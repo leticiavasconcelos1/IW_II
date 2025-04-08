@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade ddm</title>
+</head>
+<body style="background-color: #669bbc;">
+    <script>
+        function exibirMenu() {
+            return prompt(
+                "===== MENU INTERATIVO =====\n" +
+                "1 - Ver mensagem\n" +
+                "2 - Calcular média das notas\n" +
+                "3 - Sair\n" +
+                "Escolha uma opção:"
+            );
+        }
+    
+        function executarOpcao(opcao) {
+            switch (opcao) {
+                case "1":
+                    alert("Olá! Bem-vindo ao menu interativo.");
+                    break;
+    
+                case "2":
+                    let n1 = parseFloat(prompt("Digite a primeira nota:"));
+                    let n2 = parseFloat(prompt("Digite a segunda nota:"));
+
+                    if (isNaN(n1) || isNaN(n2)) {
+                        alert("Erro: Digite apenas números válidos.");
+                    } else {
+                        let nota = (n1 + n2) / 2;
+                        alert(`A média é: ${nota}`);
+
+                        if (nota > 10 || nota < 0) {
+                            alert("Média inválida, Insira notas de valores entre 0 e 10.");
+                        } else if (nota >= 7) {
+                            alert("Parabéns, você foi aprovado(a)!");
+                        } else if (nota >= 5) {
+                            alert("Você tera que fazer recuperação.");
+                        } else {
+                            alert("Você está reprovado(a).");
+                        }
+                    }
+                    break;
+
+    
+                case "3":
+                    alert("até mais");
+                    return false; // Encerra o loop
+    
+                default:
+                    alert("Opção inválida. Tente novamente.");
+            }
+            return true; // Continua o loop
+        }
+    
+        function iniciarMenu() {
+            let continuar = true;
+            while (continuar) {
+                let opcao = exibirMenu();
+                if (opcao === null) {
+                    // Caso o usuário clique em "Cancelar"
+                    alert("Entrada cancelada. Encerrando o menu.");
+                    break;
+                }
+                continuar = executarOpcao(opcao.trim());
+            }
+        }
+    
+        // Inicia o menu quando a página carregar
+        window.onload = iniciarMenu;
+    </script>
+    <h1 style="text-align: center;" > Muito obrigada, volte sempre</h1>
+</body>
+</html>
