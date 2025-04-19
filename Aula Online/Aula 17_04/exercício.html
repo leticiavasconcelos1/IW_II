@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício - Funções</title>
+    <style>
+        h1{
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        body{
+            text-align: center;
+            background-color:#cdb4db ;
+        }
+
+    </style>
+</head>
+<body>
+    <h1> Calculadora IMC </h1>
+    <label for="peso"> Peso (kg): </label>
+    <input type="number" id="peso" step ="0.1">
+
+    <br>
+
+    <label for="altura"> Altura (m): </label>
+    <input type="number" id="altura" step="0.01">
+
+    <br>
+
+    <button onclick="mostrarResultado()"> Calcular IMC </button>
+
+    <div id="resultado"></div>   
+</body>
+</html>
+
+<script>
+    function calcularIMC(peso, altura){
+        return peso / (altura * altura);
+    }
+
+    function mostrarResultado(){
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        const resultado = document.getElementById('resultado');
+
+    if(isNan(peso) || isNan (altura) || peso <= 0 || altura <= 0 ){
+        resultado.textContent = "Por favor, insira valores válidos";
+        return;
+    }
+
+    const imc = calcularIMC(peso, altura).toFixed(2);
+    let classificacao = '';
+
+    if(imc<18.5){
+        classificacao = 'abaixo do peso';
+    }
+
+    else if (imc < 25){
+        classificacao = 'peso normal';
+    }
+
+    else if (imc < 30){
+        classificacao = 'sobrepeso';
+    }
+
+    else if (imc < 35){
+        classificacao = 'obesidade grau I';
+    }
+
+    else if (imc < 40){
+        classificacao = 'obesidade grau II';
+    }
+
+    else{
+        classificacao = 'obesidade grau III';
+    }
+
+    resultado.textContent = 'Seu IMC é ${imc} (${classificacao}).';
+}
+
+    
+
+</script>
